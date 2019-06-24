@@ -10,14 +10,10 @@
 						<div class="line thin"></div>
 						<div class="page-description">
 				<center><h4>VISI</h4>
-							<p>Mewujudkan Pelayanan Penempatan dan Perlindungan TKI yang Berkualitas dan Bermartabat</p>
+							<p><?=$body['visi'] ?></p>
 							<h4>MISI</h4>
 							<p>
-							1. Memberikan pelayanan dokumen CTKI yang akan berangkat ke luar negeri melalui SPPKTKLN/SISKOTKLN<br>
-							2. Memberikan pelayanan informasi pasar kerja luar negeri<br>
-							3. Memberikan pelayanan pembinaan terhadap PPTKIS/Kantor Cabang, BLKLN, dan tempat penampungan TKI dalam upaya pemantapan peningkatan kualitas TKI<br>
-							4. Memberikan pelayanan perlindungan dan bantuan hukum bagi TKI yang bermasalah, baik pada saat pra, masa dan purna penempatan<br>
-							5. Melakukan peningkatan SDM BP3TKI Jakarta dan sarana penunjang pelayanan penempatan dan perlindungan TKI<br>
+							<?=$body['misi']?>
 							</p>
 				</center>
 					</div>

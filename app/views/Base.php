@@ -103,8 +103,8 @@
 							<li class="dropdown magz-dropdown">
 								<a href="{base_url}">TENTANG KAMI<i class="ion-ios-arrow-right"></i></a>
 								<ul class="dropdown-menu">
-									<li><a href="{base_url}">Sejarah</a></li>
-									<li><a href="{base_url}Visimisi">Visi Dan Misi</a></li>
+									<li><a href="{base_url}sejarah">Sejarah</a></li>
+									<li><a href="{base_url}visimisi">Visi Dan Misi</a></li>
 									<li><a href="{base_url}kedudukan">Kedudukan</a></li>
 									<li><a href="{base_url}tugasdanfungsi">Tugas Dan Fungsi</a></li>
 									<li class="dropdown magz-dropdown">

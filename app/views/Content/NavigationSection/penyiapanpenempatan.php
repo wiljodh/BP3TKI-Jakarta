@@ -10,7 +10,7 @@
 						<div class="line thin"></div>
 						<div class="page-description">
 				<center>
-				<img src="assets/images/strukturdanorganisasi/penyiapanpenempatan/penyiapanpenempatan.jpg" alt="penyiapan penempatan" style="width:700px;height:500px;">
+				<img src="<?php echo base_url('assets/images/strukturdanorganisasi/upload/'.$body['organisasi_4']) ?>" alt="penyiapan penempatan" style="width:700px;height:500px;">
 				</center>
 					</div>
 				</div>
