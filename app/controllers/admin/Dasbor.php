@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dasbor extends CI_Controller {
-	
+
 	// Load database
 	public function __construct(){
 		parent::__construct();
@@ -13,7 +13,7 @@ class Dasbor extends CI_Controller {
 		$this->load->model('kategori_produk_model');
 		$this->load->model('kategori_berita_model');
 	}
-	
+
 	// Index
 	public function index() {
 		$site 				= $this->konfigurasi_model->listing();
@@ -34,24 +34,24 @@ class Dasbor extends CI_Controller {
 						'isi'				=> 'admin/dasbor/list');
 		$this->load->view('admin/layout/wrapper',$data);
 	}
-	
+
 	// Profil
 	public function profil() {
 		$site = $this->konfigurasi_model->listing();
 		$id_user= $this->session->userdata('id');
 		$user	= $this->user_model->detail($id_user);
-		
+
 		// Validasi
 		$valid = $this->form_validation;
 		$valid->set_rules('nama','Website name','required');
 		$valid->set_rules('email','Email','required|valid_email');
-		
+
 		if($valid->run() === FALSE) {
-			
+
 		$data = array(	'title'	=> 'Update Profil - '.$site['namaweb'],
 						'user'	=> $user,
 						'isi'	=> 'admin/dasbor/profil');
-		$this->load->view('admin/layout/wrapper',$data);	
+		$this->load->view('admin/layout/wrapper',$data);
 		}else{
 			$i = $this->input;
 			$password = $i->post('password');
@@ -60,31 +60,31 @@ class Dasbor extends CI_Controller {
 								'nama'		=> $i->post('nama'),
 								'email'		=> $i->post('email'),
 								'level'		=> $i->post('level'));
-				$this->user_model->edit($data);		
-				$this->session->set_flashdata('sukses','User updated and password changed');				
+				$this->user_model->edit($data);
+				$this->session->set_flashdata('sukses','User updated and password changed');
 			}else{
 				$data = array(	'id_user'	=> $i->post('id_user'),
 								'nama'		=> $i->post('nama'),
 								'email'		=> $i->post('email'),
 								'password'	=> sha1($i->post('password')),
 								'level'		=> $i->post('level'));
-				$this->user_model->edit($data);		
+				$this->user_model->edit($data);
 				$this->session->set_flashdata('sukses','User updated successfully');
 			}
 			redirect(base_url('admin/dasbor/profil'));
-		}	
+		}
 	}
-	
+
 	// General Configuration
 	public function konfigurasi() {
 		$site = $this->konfigurasi_model->listing();
-		
-		// Validasi 
+
+		// Validasi
 		$this->form_validation->set_rules('namaweb','Website name website','required');
 		$this->form_validation->set_rules('email','Email','valid_email');
-		
+
 		if($this->form_validation->run() === FALSE) {
-			
+
 		$data = array(	'title'	=> 'General Configuration',
 						'site'	=> $site,
 						'isi'	=> 'admin/dasbor/umum');
@@ -94,8 +94,6 @@ class Dasbor extends CI_Controller {
 			$data = array(	'id_konfigurasi'	=> $i->post('id_konfigurasi'),
 							'home_setting'		=> $i->post('home_setting'),
 							'namaweb'			=> $i->post('namaweb'),
-							'tagline'			=> $i->post('tagline'),
-							'tentang'			=> $i->post('tentang'),
 							'website'			=> $i->post('website'),
 							'email'				=> $i->post('email'),
 							'alamat'			=> $i->post('alamat'),
@@ -114,22 +112,22 @@ class Dasbor extends CI_Controller {
 			redirect(base_url('admin/dasbor/konfigurasi'));
 		}
 	}
-	
+
 	// New logo
 	public function logo() {
 		$site = $this->konfigurasi_model->listing();
-		
+
 		$v = $this->form_validation;
 		$v->set_rules('id_konfigurasi','ID Konfigurasi','required');
-		
+
 		if($v->run()) {
-			
+
 			$config['upload_path'] 		= './assets/upload/image/';
 			$config['allowed_types'] 	= 'gif|jpg|png';
-			$config['max_size']			= '12000'; // KB	
-$this->load->library('upload', $config);
+			$config['max_size']			= '12000'; // KB
+			$this->load->library('upload', $config);
 			if(! $this->upload->do_upload('logo')) {
-				
+
 		$data = array(	'title'	=> 'New logo',
 						'site'	=> $site,
 						'error'	=> $this->upload->display_errors(),
@@ -139,7 +137,7 @@ $this->load->library('upload', $config);
 				$upload_data				= array('uploads' =>$this->upload->data());
 				// Image Editor
 				$config['image_library']	= 'gd2';
-				$config['source_image'] 	= './assets/upload/image/'.$upload_data['uploads']['file_name']; 
+				$config['source_image'] 	= './assets/upload/image/'.$upload_data['uploads']['file_name'];
 				$config['new_image'] 		= './assets/upload/image/thumbs/';
 				$config['create_thumb'] 	= TRUE;
 				$config['maintain_ratio'] 	= TRUE;
@@ -167,22 +165,22 @@ $this->load->library('upload', $config);
 						'isi'	=> 'admin/dasbor/logo');
 		$this->load->view('admin/layout/wrapper',$data);
 	}
-	
+
 	// Konfigurasi Icon
 	public function icon() {
 		$site = $this->konfigurasi_model->listing();
-		
+
 		$v = $this->form_validation;
 		$v->set_rules('id_konfigurasi','ID Konfigurasi','required');
-		
+
 		if($v->run()) {
-			
+
 			$config['upload_path'] 		= './assets/upload/image/';
 			$config['allowed_types'] 	= 'gif|jpg|png';
-			$config['max_size']			= '12000'; // KB	
+			$config['max_size']			= '12000'; // KB
 $this->load->library('upload', $config);
 			if(! $this->upload->do_upload('icon')) {
-				
+
 		$data = array(	'title'	=> 'New Icon',
 						'site'	=> $site,
 						'error'	=> $this->upload->display_errors(),
@@ -192,7 +190,7 @@ $this->load->library('upload', $config);
 				$upload_data				= array('uploads' =>$this->upload->data());
 				// Image Editor
 				$config['image_library']	= 'gd2';
-				$config['source_image'] 	= './assets/upload/image/'.$upload_data['uploads']['file_name']; 
+				$config['source_image'] 	= './assets/upload/image/'.$upload_data['uploads']['file_name'];
 				$config['new_image'] 		= './assets/upload/image/thumbs/';
 				$config['create_thumb'] 	= TRUE;
 				$config['maintain_ratio'] 	= TRUE;
@@ -220,12 +218,12 @@ $this->load->library('upload', $config);
 						'isi'	=> 'admin/dasbor/icon');
 		$this->load->view('admin/layout/wrapper',$data);
 	}
-	
+
 	// Quote
 	public function quote() {
 		$site = $this->konfigurasi_model->listing();
-		
-		// Validasi 
+
+		// Validasi
 		$this->form_validation->set_rules('judul_1','Judul Quote 1','required');
 		$this->form_validation->set_rules('pesan_1','Pesan Quote 1','required');
 		$this->form_validation->set_rules('judul_2','Judul Quote 2','required');
@@ -234,9 +232,9 @@ $this->load->library('upload', $config);
 		$this->form_validation->set_rules('pesan_3','Pesan Quote 3','required');
 		$this->form_validation->set_rules('judul_4','Judul Quote 4','required');
 		$this->form_validation->set_rules('pesan_4','Pesan Quote 4','required');
-		
+
 		if($this->form_validation->run() === FALSE) {
-			
+
 		$data = array(	'title'	=> 'General Configuration - Quote Front End',
 						'site'	=> $site,
 						'isi'	=> 'admin/dasbor/quote');
@@ -262,22 +260,22 @@ $this->load->library('upload', $config);
 			redirect(base_url('admin/dasbor/quote'));
 		}
 	}
-	
+
 	// New yacht
 	public function yacht() {
 		$site = $this->konfigurasi_model->listing();
-		
+
 		$v = $this->form_validation;
 		$v->set_rules('id_konfigurasi','ID Konfigurasi','required');
-		
+
 		if($v->run()) {
 			if(!empty($_FILES['gambar']['name'])) {
 			$config['upload_path'] 		= './assets/upload/image/';
 			$config['allowed_types'] 	= 'gif|jpg|png';
-			$config['max_size']			= '12000'; // KB	
-$this->load->library('upload', $config);
+			$config['max_size']			= '12000'; // KB
+			$this->load->library('upload', $config);
 			if(! $this->upload->do_upload('gambar')) {
-				
+
 		$data = array(	'title'	=> 'Yacht Information',
 						'site'	=> $site,
 						'error'	=> $this->upload->display_errors(),
@@ -287,7 +285,7 @@ $this->load->library('upload', $config);
 				$upload_data				= array('uploads' =>$this->upload->data());
 				// Image Editor
 				$config['image_library']	= 'gd2';
-				$config['source_image'] 	= './assets/upload/image/'.$upload_data['uploads']['file_name']; 
+				$config['source_image'] 	= './assets/upload/image/'.$upload_data['uploads']['file_name'];
 				$config['new_image'] 		= './assets/upload/image/thumbs/';
 				$config['create_thumb'] 	= TRUE;
 				$config['maintain_ratio'] 	= TRUE;
@@ -326,5 +324,86 @@ $this->load->library('upload', $config);
 						'isi'	=> 'admin/dasbor/yacht');
 		$this->load->view('admin/layout/wrapper',$data);
 	}
-	
+
+	public function tentang() {
+		$this->load->model('tentang_model');
+		$site = $this->tentang_model->listing();
+
+		$i = $this->input;
+		if(!$i->post()) {
+
+		$data = array(	'title'	=> 'About',
+						'site'	=> $site,
+						'isi'	=> 'admin/dasbor/tentang');
+		$this->load->view('admin/layout/wrapper',$data);
+		}else{
+			$data = array(	'id_konfigurasi'=> $i->post('id_konfigurasi'),
+							'sejarah'			=> nl2br($i->post('sejarah')),
+							'visi'				=> $i->post('visi'),
+							'misi'				=> nl2br($i->post('misi')),
+							'kedudukan_1'		=> nl2br($i->post('kedudukan_1')),
+							'kedudukan_2'		=> nl2br($i->post('kedudukan_2')),
+							'tugas'				=> nl2br($i->post('tugas')),
+							'fungsi'			=> nl2br($i->post('fungsi')),
+							'id_user'			=> $this->session->userdata('id'));
+			$this->tentang_model->edit($data);
+			$this->session->set_flashdata('sukses','About configuration updated successfully');
+			redirect(base_url('admin/dasbor/tentang'));
+		}
+	}
+
+		public function organisasi() {
+			$this->load->model('struktur_organisasi_model');
+			$site = $this->struktur_organisasi_model->listing();
+
+			$v = $this->form_validation;
+			$v->set_rules('id_konfigurasi','ID Konfigurasi','required');
+
+			$config['upload_path'] 		= './assets/images/strukturdanorganisasi/upload/';
+			$config['allowed_types'] 	= 'gif|jpg|png';
+			$config['max_size']			= '12000'; // KB
+			$config['overwrite'] =  true;
+			$this->load->library('upload');
+
+			if($v->run()) {
+
+				$files = [];
+				$list = ['organisasi_1'
+				, 'organisasi_2'
+				, 'organisasi_3'
+				, 'organisasi_4'
+				, 'organisasi_5'];
+
+				$config['upload_path'] 		= './assets/images/strukturdanorganisasi/upload/';
+				$config['allowed_types'] 	= 'gif|jpg|png';
+				$config['max_size']			= '12000'; // KB
+				$config['overwrite'] =  true;
+
+				foreach($list as $key => $value){
+					$config['file_name'] = $value;
+					$this->upload->initialize($config);
+					$upload = $this->upload->do_upload($value);
+					if($upload){
+						$files[$value] = $this->upload->data();
+					}
+				}
+				
+
+				foreach ($files as $key => $value) {
+					$i = $this->input;
+					$data = array(	'id_konfigurasi'=> $i->post('id_konfigurasi'),
+									$key			=> $value['file_name'],
+									'id_user'			=> $this->session->userdata('id'));
+					$this->struktur_organisasi_model->edit($data);
+				}
+				$this->session->set_flashdata('sukses','Organization changed');
+				redirect(base_url('admin/dasbor/organisasi'));
+			}
+			// Default page
+			$data = array(	'title'	=> 'Organization',
+						'site'	=> $site,
+						'isi'	=> 'admin/dasbor/organisasi');
+			$this->load->view('admin/layout/wrapper',$data);
+		}
+
 }

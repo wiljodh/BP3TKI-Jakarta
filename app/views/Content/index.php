@@ -13,8 +13,13 @@
 									<span class="sr-only">Next</span>
 								</a>
 							</div>
-							<div class="owl-carousel owl-theme" id="headline">							
-								<div class="item">
+							<div class="owl-carousel owl-theme" id="headline">
+									{slide}
+									<div class="item">
+										<marquee behavior="scroll" direction="left"><a href="<?=$base_url?>berita/r/{slug_berita}"><div class="badge">BERITA TERKINI!</div><b>{nama_berita}</b></a></marquee>
+									</div>
+										{/slide}
+								<!-- <div class="item">
 									<marquee behavior="scroll" direction="left"><a href="#"><div class="badge">BERITA TERKINI!</div><b>SELAMAT HARI PAHLAWAN NASIONAL 2018</b></a></marquee>
 								</div>
 								<div class="item">
@@ -25,7 +30,7 @@
 								</div>
 								<div class="item">
 									<marquee behavior="scroll" direction="left"><a href="#"><div class="badge">BERITA TERKINI!</div><b>TINGKATKAN KEHADIRAN, BP3TKI SELENGGARAKAN SOSIALISASI PELUANG KERJA<b></a></marquee>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<div class="owl-carousel owl-theme slide" id="featured">
@@ -394,7 +399,7 @@
 								</form>
 							</div>
 						</aside>
-						
+
 						<!-- <aside>
 								<h1 class="aside-title">Media Foto
 									<div class="carousel-nav" id="picture-list-nav">
@@ -447,20 +452,20 @@
 										<a href="http://bp3tkijakarta.com/cat/pemberdayaan/">
 											<img src="{base_url}assets/images/pemb.jpeg" alt="Sponsored" height="130" width="200">
 										</a>
-								</figure> 
+								</figure>
 									<br>
 								<figure>
 										<a href="http://bp3tkijakarta.com/one-click/">
 											<img src="{base_url}assets/images/oci.png" alt="Sponsored" height="130" width="200">
 										</a>
-								</figure> 
+								</figure>
 							</div>
 						</aside>
 					</div>
 				</div>
 			</div>
 		</section>
-		
+
 <section class="best-of-the-week">
 			<div class="container">
 				<h1><div class="text">TAUTAN</div>
@@ -492,7 +497,7 @@
 						<div class="inner">
 								<a href="https://www.kemenkumham.go.id/">
 									<img src="{base_url}assets/images/logo/kumham.png" alt="Sample Article" height="100px">
-								</a>							
+								</a>
 						</div>
 					</article>
 					<article class="article">
@@ -519,4 +524,3 @@
 				</div>
 			</div>
 		</section>
-

@@ -43,6 +43,8 @@
     <li><a href="#"><i class="fa fa-wrench"></i> Konfigurasi Website<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
             <li><a href="<?php echo base_url('admin/dasbor/konfigurasi')?>">Konfigurasi Umum</a></li>
+            <li><a href="<?php echo base_url('admin/dasbor/tentang')?>">Tentang</a></li>
+            <li><a href="<?php echo base_url('admin/dasbor/organisasi')?>">Struktur Organisasi</a></li>
             <li><a href="<?php echo base_url('admin/dasbor/logo')?>">Ganti Logo</a></li>
             <li><a href="<?php echo base_url('admin/dasbor/icon')?>">Ganti Icon</a></li>
         </ul>
